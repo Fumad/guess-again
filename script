@@ -14,6 +14,7 @@ local Frame = Instance.new("Frame")
 local TextButton = Instance.new("TextButton")
 local billboard = Instance.new("BillboardGui")
 local TextLabel = Instance.new("TextLabel")
+local runService = game:GetService("RunService")
 
 -- Properties
 
@@ -88,9 +89,12 @@ local function GUOWRKU_fake_script() -- TextButton.LocalScript
 					local esp = script.Parent.esp:Clone()
 					esp.Parent = player.Character.Head
 					esp.Adornee = player.Character.Head
-					while wait(0) and enabled == true do
-						esp.TextLabel.Text = (esp.Parent.Parent.Name.. " ".. esp.Parent.Parent.Humanoid.Health.. "/".. esp.Parent.Parent.Humanoid.MaxHealth)
-					end
+					runService.Heartbeat:Connect(function()
+						if enabled == true then
+							wait(0)
+							esp.TextLabel.Text = (esp.Parent.Parent.Name.. " ".. esp.Parent.Parent.Humanoid.Health.. "/".. esp.Parent.Parent.Humanoid.MaxHealth)
+						end
+					end)
 				end
 
 			end
