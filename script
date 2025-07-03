@@ -78,7 +78,6 @@ local function HUQQGJC_fake_script() -- TextButton.LocalScript
 				local esp = script.Parent.esp:Clone()
 				esp.Parent = player.Character.Head
 				esp.Adornee = player.Character.Head
-				esp.TextLabel.Script.Enabled = true
 			end
 			
 		end
