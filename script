@@ -64,23 +64,43 @@ TextLabel.TextWrapped = true
 
 -- Scripts
 
--- TextLabel.Script is disabled.
-local function HUQQGJC_fake_script() -- TextButton.LocalScript 
+local function TEOX_fake_script() -- TextLabel.Script 
+	local script = Instance.new('Script', TextLabel)
+
+	while wait(0) do
+		script.Parent.Text = (script.Parent.Parent.Parent.Parent.Name.. " ".. script.Parent.Parent.Parent.Parent.Humanoid.Health.. "/".. script.Parent.Parent.Parent.Parent.Humanoid.MaxHealth)
+	end
+end
+coroutine.wrap(TEOX_fake_script)()
+local function LIFG_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	local players = game:GetService("Players")
+	local enabled = false
 	script.Parent.MouseButton1Click:Connect(function()
-		for count = 1, #players:GetChildren(), 1 do
-			local player = players:GetChildren()[count]
-			if player ~= players.LocalPlayer or player.Character.Head:FindFirstChild("esp") then 
-				print("cant do on user")
-			else
-				local esp = script.Parent.esp:Clone()
-				esp.Parent = player.Character.Head
-				esp.Adornee = player.Character.Head
+		if enabled then
+			enabled = false
+			for count = 1, #players:GetChildren(), 1 do
+				local player = players:GetChildren()[count]
+				if player.Character.Head:FindFirstChild("esp") then 
+					player.Character.Head:FindFirstChild("esp"):Destroy()
+				end
 			end
 			
+		else
+			for count = 1, #players:GetChildren(), 1 do
+				local player = players:GetChildren()[count]
+				if player ~= players.LocalPlayer or player.Character.Head:FindFirstChild("esp") then 
+					print("cant do on user")
+				else
+					local esp = script.Parent.esp:Clone()
+					esp.Parent = player.Character.Head
+					esp.Adornee = player.Character.Head
+					esp.TextLabel.Script.Enabled = true
+				end
+	
+			end
 		end
 	end)
 end
-coroutine.wrap(HUQQGJC_fake_script)()
+coroutine.wrap(LIFG_fake_script)()
