@@ -12,7 +12,7 @@
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextButton = Instance.new("TextButton")
-local esp = Instance.new("BillboardGui")
+local billboard = Instance.new("BillboardGui")
 local TextLabel = Instance.new("TextLabel")
 
 -- Properties
@@ -40,16 +40,16 @@ TextButton.TextScaled = true
 TextButton.TextSize = 14
 TextButton.TextWrapped = true
 
-esp.Name = "esp"
-esp.Parent = TextButton
-esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-esp.Active = true
-esp.AlwaysOnTop = true
-esp.ExtentsOffset = Vector3.new(0, 2, 0)
-esp.LightInfluence = 1
-esp.Size = UDim2.new(0, 100, 0, 100)
+billboard.Name = "esp"
+billboard.Parent = TextButton
+billboard.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+billboard.Active = true
+billboard.AlwaysOnTop = true
+billboard.ExtentsOffset = Vector3.new(0, 2, 0)
+billboard.LightInfluence = 1
+billboard.Size = UDim2.new(0, 100, 0, 100)
 
-TextLabel.Parent = esp
+TextLabel.Parent = billboard
 TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 TextLabel.BackgroundTransparency = 1
 TextLabel.BorderColor3 = Color3.new(0, 0, 0)
@@ -63,15 +63,6 @@ TextLabel.TextStrokeTransparency = 0
 TextLabel.TextWrapped = true
 
 -- Scripts
-
-local function PEZCJRF_fake_script() -- TextLabel.Script 
-	local script = Instance.new('Script', TextLabel)
-
-	while wait(0) do
-		esp.Text = (esp.Parent.Parent.Parent.Name.. " ".. esp.Parent.Parent.Parent.Humanoid.Health.. "/".. esp.Parent.Parent.Parent.Humanoid.MaxHealth)
-	end
-end
-coroutine.wrap(PEZCJRF_fake_script)()
 local function GUOWRKU_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
@@ -86,8 +77,9 @@ local function GUOWRKU_fake_script() -- TextButton.LocalScript
 					player.Character.Head:FindFirstChild("esp"):Destroy()
 				end
 			end
-			
+
 		else
+			enabled = true
 			for count = 1, #players:GetChildren(), 1 do
 				local player = players:GetChildren()[count]
 				if player ~= players.LocalPlayer or player.Character.Head:FindFirstChild("esp") then 
@@ -96,8 +88,11 @@ local function GUOWRKU_fake_script() -- TextButton.LocalScript
 					local esp = script.Parent.esp:Clone()
 					esp.Parent = player.Character.Head
 					esp.Adornee = player.Character.Head
+					while wait(0) and enabled == true do
+						esp.TextLabel.Text = (esp.Parent.Parent.Name.. " ".. esp.Parent.Parent.Humanoid.Health.. "/".. esp.Parent.Parent.Humanoid.MaxHealth)
+					end
 				end
-	
+
 			end
 		end
 	end)
