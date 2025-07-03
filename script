@@ -64,15 +64,16 @@ TextLabel.TextWrapped = true
 
 -- Scripts
 
-local function TEOX_fake_script() -- TextLabel.Script 
+local function PEZCJRF_fake_script() -- TextLabel.Script 
 	local script = Instance.new('Script', TextLabel)
 
 	while wait(0) do
 		script.Parent.Text = (script.Parent.Parent.Parent.Parent.Name.. " ".. script.Parent.Parent.Parent.Parent.Humanoid.Health.. "/".. script.Parent.Parent.Parent.Parent.Humanoid.MaxHealth)
 	end
 end
-coroutine.wrap(TEOX_fake_script)()
-local function LIFG_fake_script() -- TextButton.LocalScript 
+coroutine.wrap(PEZCJRF_fake_script)()
+local function GUOWRKU_fake_script() -- TextButton.LocalScript 
+	print("adi u are gey")
 	local script = Instance.new('LocalScript', TextButton)
 
 	local players = game:GetService("Players")
@@ -102,4 +103,4 @@ local function LIFG_fake_script() -- TextButton.LocalScript
 		end
 	end)
 end
-coroutine.wrap(LIFG_fake_script)()
+coroutine.wrap(GUOWRKU_fake_script)()
