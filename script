@@ -1,0 +1,87 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local esp = Instance.new("BillboardGui")
+local TextLabel = Instance.new("TextLabel")
+
+-- Properties
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BackgroundTransparency = 0.949999988079071
+Frame.BorderColor3 = Color3.new(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(1, 0, 1, 0)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton.BorderColor3 = Color3.new(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0, 0, 0.947698772, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 50)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "ESP"
+TextButton.TextColor3 = Color3.new(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14
+TextButton.TextWrapped = true
+
+esp.Name = "esp"
+esp.Parent = TextButton
+esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+esp.Active = true
+esp.AlwaysOnTop = true
+esp.ExtentsOffset = Vector3.new(0, 2, 0)
+esp.LightInfluence = 1
+esp.Size = UDim2.new(0, 100, 0, 100)
+
+TextLabel.Parent = esp
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextStrokeTransparency = 0
+TextLabel.TextWrapped = true
+
+-- Scripts
+
+-- TextLabel.Script is disabled.
+local function HUQQGJC_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local players = game:GetService("Players")
+	script.Parent.MouseButton1Click:Connect(function()
+		for count = 1, #players:GetChildren(), 1 do
+			local player = players:GetChildren()[count]
+			if player ~= players.LocalPlayer or player.Character.Head:FindFirstChild("esp") then 
+				print("cant do on user")
+			else
+				local esp = script.Parent.esp:Clone()
+				esp.Parent = player.Character.Head
+				esp.Adornee = player.Character.Head
+				esp.TextLabel.Script.Enabled = true
+			end
+			
+		end
+	end)
+end
+coroutine.wrap(HUQQGJC_fake_script)()
