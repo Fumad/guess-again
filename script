@@ -68,12 +68,11 @@ local function PEZCJRF_fake_script() -- TextLabel.Script
 	local script = Instance.new('Script', TextLabel)
 
 	while wait(0) do
-		script.Parent.Text = (script.Parent.Parent.Parent.Parent.Name.. " ".. script.Parent.Parent.Parent.Parent.Humanoid.Health.. "/".. script.Parent.Parent.Parent.Parent.Humanoid.MaxHealth)
+		esp.Text = (esp.Parent.Parent.Parent.Name.. " ".. esp.Parent.Parent.Parent.Humanoid.Health.. "/".. esp.Parent.Parent.Parent.Humanoid.MaxHealth)
 	end
 end
 coroutine.wrap(PEZCJRF_fake_script)()
 local function GUOWRKU_fake_script() -- TextButton.LocalScript 
-	print("adi u are gey")
 	local script = Instance.new('LocalScript', TextButton)
 
 	local players = game:GetService("Players")
